@@ -1,0 +1,69 @@
+﻿@model ProductViewModel
+
+@using Microsoft.Extensions.Primitives;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<body>
+
+    <ul id="table">
+        <li><a asp-area="Administration" asp-controller="Users" asp-action="Users">All Users</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="Create">Add Product</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="AllProducts">All Products</a></li>
+        <li><a asp-area="Administration" asp-controller="Supplier" asp-action="AllSuppliers">All Suppliers</a></li>
+    </ul>
+
+</body>
+
+<h1 class="mb-5">Create new product</h1>
+
+<div class="row">
+
+    <form class="col-lg-8" asp-controller="Products" asp-action="Create" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.ProductName"></label>
+            <input asp-for="@Model.ProductName" class="form-control" />
+            <span asp-validation-for="@Model.ProductName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.BuyPrice"></label>
+            <input asp-for="@Model.BuyPrice" class="form-control" />
+            <span asp-validation-for="@Model.BuyPrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.SellPrice"></label>
+            <input asp-for="@Model.SellPrice" class="form-control" />
+            <span asp-validation-for="@Model.SellPrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.AvailableQuantity"></label>
+            <input asp-for="@Model.AvailableQuantity" class="form-control" />
+            <span asp-validation-for="@Model.AvailableQuantity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+
+            <label>Select Category: </label>
+            <select class="selectpicker", asp-for="Id" asp-items="@Model.Categories"></select>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Picture"></label>
+            <input asp-for="@Model.Picture" type="file" name="pic" /><br />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Create Product</button>
+            @{ var referrer = this.Context.Request.Headers["Referer"]; }
+
+            @if (referrer != default(StringValues))
+            {
+                <a href="@referrer.ToString()" class="btn btn-default">Go Back</a>
+            }
+        </div>
+        </form>
+</div>
+
+
+
+

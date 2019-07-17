@@ -1,0 +1,40 @@
+﻿@using StoreManagementSystemWeb.Areas.Models;
+
+@model CategoryViewModel
+
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModal2-label"> Dialog</h4>
+                    <div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <form class="col-lg-8" asp-controller="Products" asp-action="Create" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label asp-for="@Model.CategoryName"></label>
+                                            <input asp-for="@Model.CategoryName" class="form-control" />
+                                            <span asp-validation-for="@Model.CategoryName" class="text-danger"></span>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="btnOK" onclick="">OK</button>
+                        <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

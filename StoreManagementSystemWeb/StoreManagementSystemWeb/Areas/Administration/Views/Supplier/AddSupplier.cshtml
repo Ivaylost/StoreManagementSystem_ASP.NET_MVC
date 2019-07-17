@@ -1,0 +1,51 @@
+﻿@using StoreManagementSystemWeb.Areas.Models;
+@model AddSupplierViewModel
+
+@using (Html.BeginForm("AddSupplier", "Supplier", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModal-label">Add Product's Supplier</h4>
+                    <div>
+
+                        <div class="modal-body">
+                            @*<div class="form-group">
+                                <label asp-for="@Model.SupplierName"></label>
+                                <input asp-for="@Model.SupplierName" class="form-control" />
+                                <span asp-validation-for="@Model.SupplierName" class="text-danger"></span>
+
+                            </div>*@
+
+                            <div class="form-group">
+
+                                <label>Select Supplier: </label>
+                                <select class="selectpicker" , asp-for="SupplierId" asp-items="@Model.Suppliers"></select>
+
+                            </div>
+                            @*<div class="form-group">
+                                    <label>Movie genre(s)</label><br />
+                                    @Html.DropDownListFor(
+                                                   m => m.SupplierName,
+                                                   new SelectList(
+                                                   Model.Suppliers, "SupplierName", "SupplierName"),
+                                                   htmlAttributes: new { @class = "form-control", multiple="multiple" })
+                                </div>*@
+                            <div class="form-group">
+                                <label asp-for="@Model.ProductId"></label>
+                                <input asp-for="@Model.ProductId" class="form-control" readOnly="readOnly" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="btnOK" onclick="">OK</button>
+                        <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

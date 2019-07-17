@@ -1,0 +1,67 @@
+﻿@model AdminViewModel
+@using Microsoft.Extensions.Primitives;
+
+<body>
+
+    <ul id="table">
+        <li><a asp-area="Administration" asp-controller="Users" asp-action="Users">All Users</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="Create">Add Product</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="AllProducts">All Products</a></li>
+        <li><a asp-area="Administration" asp-controller="Supplier" asp-action="AllSuppliers">All Suppliers</a></li>
+    </ul>
+
+</body>
+
+<h2>AllSuppliers</h2>
+
+
+<table class="table" id="categories">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Supplier Name</th>
+            <th>INDETIFICATIONAL NUMBER</th>
+            <th>REPRESENTED BY</th>
+            <th>ADRESS</th>
+            <th>PHONE NUMBER</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Suppliers)
+        {
+            <tr>
+                <td>
+
+                    @item.Id
+                </td>
+                <td>
+                    @item.SupplierName
+
+                </td>
+                <td>
+                    @item.IdentificationalNumber
+
+                </td>
+                <td>
+                    @item.RespresentedBy
+
+                </td>
+                <td>
+                    @item.Adress
+
+                </td>
+                <td>
+                    @item.PhoneNumber
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<input type="button" class="btn btn-success" value="AddSupplier" 
+       onclick="@("window.location.href='" + @Url.Action("Create", "Supplier") + "'");" />
+
+
+

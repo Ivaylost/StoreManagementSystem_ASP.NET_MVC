@@ -1,0 +1,31 @@
+﻿@model  ProductsViewModel
+
+
+<div>
+    <table class="table">
+        <tr>
+            <th width="150px">Image</th>
+            <th width="300px">Product Name</th>
+            <th width="150px">Price</th>
+        </tr>
+        @foreach (var category in Model.ImportedCategories)
+        {
+            @foreach (var product in category.Products)
+            {
+                <tr>
+                    <td>
+                        @*<img src="@Url.Content(product.Picture)" alt="Ops..Something went wrong" height="120" width="120" />*@
+                        <a href="@Url.Action("Details", "Product", new { id = product.Id})" /a> <img src="@Url.Content(product.Picture)" alt="Ops..Something went wrong" height="120" width="120" />
+                    </td>
+                    <td>
+                        <h5> <a href="@Url.Action("Details", "Product", new { id = product.Id})" /a> @product.ProductName </h5>
+                    </td>
+                    <td>
+                        <h5> <a href="@Url.Action("Details", "Product", new { id = product.Id })" /a> @product.SellPrice </h5>
+                    </td>
+                </tr>
+                }
+            }
+    </table>
+</div>
+

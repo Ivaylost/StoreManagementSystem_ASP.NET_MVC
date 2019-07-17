@@ -1,0 +1,86 @@
+﻿@model AdminViewModel
+@inject RoleManager<IdentityRole> RoleManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<body>
+
+    <ul id="table">
+        <li><a asp-area="Administration" asp-controller="Users" asp-action="Users">All Users</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="Create">Add Product</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="AllProducts">All Products</a></li>
+        <li><a asp-area="Administration" asp-controller="Supplier" asp-action="AllSuppliers">All Suppliers</a></li>
+    </ul>
+
+</body>
+
+<h2>All Users</h2>
+
+
+
+<table class="table" id="users">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>ID</th>
+            <th>Email</th>
+            <th>IS DELETED</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+        <tr>
+            <td>
+
+                @item.UserName
+            </td>
+            <td>
+                @item.Id
+
+            </td>
+            <td>
+                @item.Email
+
+            </td>
+
+            <td>
+
+                @item.IsDeleted
+
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("MakeAdmin", "Users", item)'">Make Admin</button>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("RevokeAdmin", "Users", item)'">Revoke Admin</button>
+            </td>
+
+            <td></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<body>
+
+
+
+</body>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#users').DataTable(
+            {
+                "bPaginate": false,
+                "searching": true
+            });
+    });
+</script>

@@ -1,0 +1,55 @@
+﻿@model ShoppingCartViewModel
+<p>
+
+</p>
+<div>
+    @{ decimal price = 0;}
+    @{ int quantity = 0;}
+
+    <table class="table">
+        <tr>
+            <th width="150px">Image</th>
+            <th width="300px">Product Name</th>
+            <th width="300px">Quontity</th>
+            <th width="150px">Single price</th>
+            <th width="150px">Total Price</th>
+        </tr>
+        @foreach (var product in Model.ImportedProducts)
+        {
+                <tr>
+                    <td>
+                        <img src="@Url.Content(product.Picture)" alt="Ops..Something went wrong" height="150" width="150" />
+                    </td>
+                    <td>
+                        <h5> @product.ProductName </h5>
+                    </td>
+                    <td>
+                        <h5> @Model.ProductsQuantity[quantity] </h5>
+                    </td>
+                    <td>
+                        <h5>@product.SellPrice</h5>
+                    </td>
+                    <td>
+                        <h5> @(product.SellPrice*Model.ProductsQuantity[quantity]) </h5>
+                    </td>
+                </tr>
+                @if (true)
+                {
+                    price = price + product.SellPrice * Model.ProductsQuantity[quantity];
+                }
+                @if (quantity < Model.ProductsQuantity.Count)
+                {
+                    quantity++;
+                }
+        }
+    </table>
+
+    <div style="margin-left: 80%">
+        <h3> Total price: @price</h3>
+
+        <input type="button" class="btn btn-success" value="Finish Order"
+               onclick="@("window.location.href='" + @Url.Action("Create", "Order") + "'");" />
+    </div>
+</div>
+
+

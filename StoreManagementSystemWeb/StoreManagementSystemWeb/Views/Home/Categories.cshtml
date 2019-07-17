@@ -1,0 +1,36 @@
+﻿@model HomeOneViewModel
+
+<h3 style="margin-left: 40%"> Our top products</h3>
+
+@foreach (var categories in Model.CategoryProductDict)
+{
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <h3>@categories.Key</h3>
+                </th>
+                <th>Product Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        @foreach (var category in categories.Value)
+            {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Product", new { id = category.Id})" /a> <img src="@Url.Content(category.Picture)" alt="Ops..Something went wrong" height="120" width="120" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Product", new { id = category.Id })" /a> @category.ProductName
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Product", new { id = category.Id })" /a> @category.SellPrice
+                    
+                </td>
+            </tr>
+        }
+    </table>
+}
+

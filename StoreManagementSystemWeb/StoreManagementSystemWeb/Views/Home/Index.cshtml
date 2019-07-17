@@ -1,0 +1,13 @@
+﻿@model HomeOneViewModel
+
+
+<div style="padding: 2%">
+    <div class="btn-group mr-2" role="group" aria-label="Second group" style="margin-left:40%">
+        <input type="button" class="btn btn-light" value="iPhone" id="iPhone" onclick="location.href='@Url.Action("GetProductsByCategoryId","Product", new {id = "iPhone"})'" />
+        <input type="button" class="btn btn-light" value="Mac" id="iPhone" onclick="location.href='@Url.Action("GetProductsByCategoryId","Product", new {id = "Mac"})'" />
+        <input type="button" class="btn btn-light" value="Watches" id="iPhone" onclick="location.href='@Url.Action("GetProductsByCategoryId","Product", new {id = "Watches"})'" />
+
+
+    </div>
+    <img src="~/images/AppleStore.png" style="width:100%;height:70%;padding: 7%">
+</div>

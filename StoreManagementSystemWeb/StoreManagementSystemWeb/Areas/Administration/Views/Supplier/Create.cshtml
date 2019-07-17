@@ -1,0 +1,63 @@
+﻿@model SupplierViewModel
+
+@using Microsoft.Extensions.Primitives;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<body>
+
+    <ul id="table">
+        <li><a asp-area="Administration" asp-controller="Users" asp-action="Users">All Users</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="Create">Add Product</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="AllProducts">All Products</a></li>
+        <li><a asp-area="Administration" asp-controller="Supplier" asp-action="AllSuppliers">All Suppliers</a></li>
+    </ul>
+
+</body>
+
+<h1 class="mb-5">Create new Supplier</h1>
+
+<div class="row">
+
+    <form class="col-lg-8" asp-controller="Players" asp-action="Create">
+        <div class="form-group">
+            <label asp-for="@Model.SupplierName"></label>
+            <input asp-for="@Model.SupplierName" class="form-control" />
+            <span asp-validation-for="@Model.SupplierName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.IdentificationalNumber"></label>
+            <input asp-for="@Model.IdentificationalNumber" class="form-control" />
+            <span asp-validation-for="@Model.IdentificationalNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.RespresentedBy"></label>
+            <input asp-for="@Model.RespresentedBy" class="form-control" />
+            <span asp-validation-for="@Model.RespresentedBy" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Adress"></label>
+            <input asp-for="@Model.Adress" class="form-control" />
+            <span asp-validation-for="@Model.Adress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.PhoneNumber"></label>
+            <input asp-for="@Model.PhoneNumber" class="form-control" />
+            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Create Supplier</button>
+            @{ var referrer = this.Context.Request.Headers["Referer"]; }
+
+            @if (referrer != default(StringValues))
+            {
+                <a href="@referrer.ToString()" class="btn btn-default">Go Back</a>
+            }
+        </div>
+    </form>
+</div>
+
+
+

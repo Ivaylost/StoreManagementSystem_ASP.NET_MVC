@@ -1,0 +1,63 @@
+﻿@model DetailsViewModels
+@using Microsoft.Extensions.Primitives;
+
+<p>
+</p>
+
+<div font color="red">
+    <p>
+        <h3>@ViewData["Message"]</h3>
+    </p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <h3><b>Product</b></h3>
+            </th>
+            <th>
+                <h3><b>Details</b></h3>
+            </th>
+        </tr>
+    </thead>
+    <tr>
+        <td>
+            <img src="@Url.Content(Model.Product.Picture)" alt="Ops..Something went wrong" height="250" width="250" />
+        </td>
+        <td>
+            <p><h4>Name: @Model.Product.ProductName</h4></p>
+            <p>
+
+            </p>
+            <p><h4>Price: @Model.Product.SellPrice</h4></p>
+        </td>
+
+    </tr>
+</table>
+
+
+<div class="row">
+    <p><h5>Avaliable Quantity: @Model.Quantity</h5></p>
+    <form class="col-lg-8" asp-controller="Product" asp-action="Details">
+
+        <div class="form-group">
+            <label asp-for="@Model.Quantity"></label>
+            <input asp-for="@Model.Quantity" />
+            <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
+            <input asp-for="@Model.ProductId" type="hidden" value="@Model.Product.Id" />
+            <input asp-for="@Model.Product" type="hidden" value="@Model.Product" />
+
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-light">Add to basket</button>
+            @{ var referrer = this.Context.Request.Headers["Referer"];}
+
+            @if (referrer != default(StringValues))
+            {
+                <a href="@referrer.ToString()" class="btn btn-danger">Go Back</a>
+            }
+        </div>
+    </form>
+</div>

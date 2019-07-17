@@ -1,0 +1,149 @@
+﻿@model AdminViewModel
+@using Microsoft.Extensions.Primitives;
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+            integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <ul id="table">
+        <li><a asp-area="Administration" asp-controller="Users" asp-action="Users">All Users</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="Create">Add Product</a></li>
+        <li><a asp-area="Administration" asp-controller="Product" asp-action="AllProducts">All Products</a></li>
+        <li><a asp-area="Administration" asp-controller="Supplier" asp-action="AllSuppliers">All Suppliers</a></li>
+    </ul>
+
+</body>
+
+<h2>AllProducs</h2>
+
+<div id="modal-placeholder"></div>
+
+
+<table class="table" id="products">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>PRODUCT NAME</th>
+            <th>BUY PRICE</th>
+            <th>SELL PRICE</th>
+            <th>AVAILABLE QUANTITY</th>
+            <th>CATEGORY NAME</th>
+            <th>PICTURE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+        <tr>
+            <td>
+
+                @item.Id
+            </td>
+            <td>
+                @item.ProductName
+
+            </td>
+            <td>
+                @item.BuyPrice
+
+            </td>
+            <td>
+                @item.SellPrice
+
+            </td>
+            <td>
+                @item.AvailableQuantity
+
+            </td>
+            <td>
+                @item.CategoryName
+
+            </td>
+            <td>
+                <img src="@Url.Content(item.Picture)" alt="Ops..Something went wrong" height="120" width="120" />
+            </td>
+            <td>
+                <button class="btn-group-justified product-button" id="@item.Id">Add Supplier</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<a asp-area="Administration" asp-controller="Product" asp-action="Create"><button class="btn btn-success">AddProduct</button></a>
+
+
+<h2>All Categories</h2>
+
+<table class="table" id="categories">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            <th>Created On</th>
+            <th>Potencial Profit $</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Categories)
+        {
+            <tr>
+                <td>
+
+                    @item.Id
+                </td>
+                <td>
+                    @item.CategoryName
+
+                </td>
+                <td>
+                    @item.CreatedOn
+
+                </td>
+                <td>
+                    @item.Profit $
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn-group-justified category-button">Add Category</button>
+
+
+<div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("AddSupplier","Supplier")'></div>
+
+<div class="modal fade" id="CategoryModal" role="dialog" data-url='@Url.Action("AddCategory","Category")'></div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('.product-button').click(function () {
+
+            var url = $('#myModal').data('url') + "/" + this.id;
+            console.log(url);
+            $.get(url, function (data) {
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
+            });
+        });
+
+    });
+
+    $(document).ready(function () {
+
+        $('.category-button').click(function () {
+
+            var url = $('#CategoryModal').data('url');
+            $.get(url, function (data) {
+                $("#CategoryModal").html(data);
+                $("#CategoryModal").modal('show');
+            });
+        });
+
+    });
+</script>
